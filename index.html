@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>האח הגדול 2026 - צפייה ישירה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .eye-gradient {
+            background: radial-gradient(circle, #22d3ee 0%, #0891b2 50%, #0a0a0a 100%);
+            opacity: 0.1;
+        }
+        .episode-card {
+            transition: all 0.3s ease;
+        }
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: #22d3ee;
+        }
+        .active-episode {
+            border-color: #22d3ee;
+            background-color: rgba(34, 211, 238, 0.1);
+        }
+        .hero-banner {
+            background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 1) 100%), url('https://media3.reshet.tv/image/upload/t_og_image/v1750918459/uploads/2025/904641484.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 eye-gradient pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="relative z-20 border-b border-gray-800 bg-black/80 backdrop-blur-md p-6 sticky top-0">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tighter text-white">האח הגדול <span class="text-cyan-400">2026</span></h1>
+            </div>
+            <div class="hidden md:block text-gray-400 text-sm">הבית הכי מפורסם במדינה</div>
+        </div>
+    </header>
+
+    <!-- Hero Image Section -->
+    <div class="relative w-full h-[300px] md:h-[450px] hero-banner flex items-end">
+        <div class="max-w-6xl mx-auto w-full p-8 relative z-10">
+            <div class="bg-black/40 backdrop-blur-sm inline-block p-4 rounded-lg border-r-4 border-cyan-500">
+                <p class="text-cyan-400 font-bold text-sm uppercase tracking-widest">עונה חדשה</p>
+                <h2 class="text-3xl md:text-5xl font-bold">כל הפרקים במקום אחד</h2>
+            </div>
+        </div>
+    </div>
+
+    <main class="relative z-10 max-w-6xl mx-auto w-full p-4 md:p-8 flex-grow -mt-10">
+        
+        <!-- Video Section -->
+        <div class="bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 aspect-video mb-8 relative" id="video-container">
+            <div id="player-placeholder" class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 p-6 text-center">
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 text-cyan-500 mb-4 animate-pulse">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2">מוכנים לצפייה?</h2>
+                <p class="text-gray-400">בחרו פרק מהרשימה למטה כדי להתחיל</p>
+            </div>
+            <iframe id="main-player" class="w-full h-full hidden" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
+            <!-- Not Released Message (Hidden for released episodes) -->
+            <div id="not-released" class="absolute inset-0 hidden flex flex-col items-center justify-center bg-zinc-900 p-6 text-center">
+                <div class="text-6xl mb-4">🔒</div>
+                <h2 class="text-2xl font-bold text-white mb-2">הפרק עדיין לא עלה</h2>
+                <p class="text-gray-400">האח הגדול מבקש להמתין בסבלנות. הפרק יעלה בקרוב!</p>
+            </div>
+        </div>
+
+        <!-- Episodes Navigation -->
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+            <span class="w-2 h-8 bg-cyan-500 rounded-full"></span>
+            רשימת הפרקים
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Episode 1 -->
+            <button onclick="playEpisode('ep1', '1GEPL2d1-W4')" class="episode-card bg-zinc-900 border border-zinc-800 p-5 rounded-xl text-right flex flex-col gap-2 group" id="btn-ep1">
+                <div class="flex justify-between items-start">
+                    <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded">זמין לצפייה</span>
+                    <span class="text-gray-500 text-xs">פרק 1</span>
+                </div>
+                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">אירוע הכניסה</h4>
+                <p class="text-gray-500 text-sm line-clamp-3">הריאליטי הכי גדול בישראל חוזר בעונה חדשה! הדלת תיפתח פעם אחר פעם, ודיירים חדשים ייכנסו בשידור חי לבית המפורסם.</p>
+            </button>
+
+            <!-- Episode 2 -->
+            <button onclick="playEpisode('ep2', 'Cv3EaJv5stw')" class="episode-card bg-zinc-900 border border-zinc-800 p-5 rounded-xl text-right flex flex-col gap-2 group" id="btn-ep2">
+                <div class="flex justify-between items-start">
+                    <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded">זמין לצפייה</span>
+                    <span class="text-gray-500 text-xs">פרק 2</span>
+                </div>
+                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">אירוע הכניסה - החלק השני</h4>
+                <p class="text-gray-500 text-sm line-clamp-3">הדלת תיפתח שוב כשדיירים חדשים ייכנסו לבית! כל מה שקרה בלילה הראשון בבית - הריב הראשון והסודות הראשונים.</p>
+            </button>
+
+            <!-- Episode 3 -->
+            <button onclick="playEpisode('ep3', '_9ZJVUWHB44')" class="episode-card bg-zinc-900 border border-zinc-800 p-5 rounded-xl text-right flex flex-col gap-2 group" id="btn-ep3">
+                <div class="flex justify-between items-start">
+                    <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded">זמין לצפייה</span>
+                    <span class="text-gray-500 text-xs">פרק 3</span>
+                </div>
+                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">פרק מוקלט - רשת 13</h4>
+                <p class="text-gray-500 text-sm line-clamp-3 italic">גרסה מוקלטת (בקרוב תעלה גרסה ללא פרסומות).</p>
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="relative z-10 p-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <div class="flex justify-center gap-4 mt-2">
+            <span class="w-1.5 h-1.5 bg-gray-700 rounded-full"></span>
+            <span class="w-1.5 h-1.5 bg-gray-700 rounded-full"></span>
+            <span class="w-1.5 h-1.5 bg-gray-700 rounded-full"></span>
+        </div>
+    </footer>
+
+    <script>
+        function playEpisode(id, youtubeId) {
+            resetSelection();
+            document.getElementById('btn-' + id).classList.add('active-episode');
+            
+            const player = document.getElementById('main-player');
+            const placeholder = document.getElementById('player-placeholder');
+            const notReleased = document.getElementById('not-released');
+            
+            placeholder.classList.add('hidden');
+            notReleased.classList.add('hidden');
+            player.classList.remove('hidden');
+            
+            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+            
+            if (window.innerWidth < 768) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function resetSelection() {
+            const buttons = document.querySelectorAll('.episode-card');
+            buttons.forEach(btn => btn.classList.remove('active-episode'));
+        }
+    </script>
+</body>
+</html>
