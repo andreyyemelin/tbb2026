@@ -93,7 +93,7 @@
             רשימת הפרקים
         </h3>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Episode 1 -->
             <button onclick="playEpisode('ep1', '1GEPL2d1-W4')" class="episode-card bg-zinc-900 border border-zinc-800 p-5 rounded-xl text-right flex flex-col gap-2 group" id="btn-ep1">
                 <div class="flex justify-between items-start">
@@ -101,7 +101,7 @@
                     <span class="text-gray-500 text-xs">פרק 1</span>
                 </div>
                 <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">אירוע הכניסה</h4>
-                <p class="text-gray-500 text-sm line-clamp-3">הריאליטי הכי גדול בישראל חוזר בעונה חדשה! הדלת תיפתח פעם אחר פעם, ודיירים חדשים ייכנסו בשידור חי לבית המפורסם.</p>
+                <p class="text-gray-500 text-sm line-clamp-3">הריאליטי הכי גדול בישראל חוזר! הדיירים נכנסים בשידור חי לבית המפורסם.</p>
             </button>
 
             <!-- Episode 2 -->
@@ -110,8 +110,8 @@
                     <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded">זמין לצפייה</span>
                     <span class="text-gray-500 text-xs">פרק 2</span>
                 </div>
-                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">אירוע הכניסה - החלק השני</h4>
-                <p class="text-gray-500 text-sm line-clamp-3">הדלת תיפתח שוב כשדיירים חדשים ייכנסו לבית! כל מה שקרה בלילה הראשון בבית - הריב הראשון והסודות הראשונים.</p>
+                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">אירוע הכניסה - חלק ב'</h4>
+                <p class="text-gray-500 text-sm line-clamp-3">הדלת תיפתח שוב כשדיירים חדשים ייכנסו! וגם - כל מה שקרה בלילה הראשון בבית.</p>
             </button>
 
             <!-- Episode 3 -->
@@ -120,8 +120,19 @@
                     <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded">זמין לצפייה</span>
                     <span class="text-gray-500 text-xs">פרק 3</span>
                 </div>
-                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">פרק מוקלט - רשת 13</h4>
-                <p class="text-gray-500 text-sm line-clamp-3 italic">גרסה מוקלטת (בקרוב תעלה גרסה ללא פרסומות).</p>
+                <h4 class="font-bold text-lg group-hover:text-cyan-400 transition-colors">הכניסה של כוכבת הריאליטי</h4>
+                <p class="text-gray-500 text-sm line-clamp-3">כוכבת מפורסמת נכנסת לבית. איך יגיבו הדיירים? טל מנסה להיות הבוסית, פאינה מטריפה ונעם פותח הכל.</p>
+                <p class="text-xs text-cyan-500/70 italic mt-1">(מוקלט מרשת 13 - גרסה נקייה בקרוב)</p>
+            </button>
+
+            <!-- Episode 4 -->
+            <button onclick="showNotReleased('ep4')" class="episode-card bg-zinc-900/50 border border-zinc-800/50 p-5 rounded-xl text-right flex flex-col gap-2 opacity-80 cursor-not-allowed group" id="btn-ep4">
+                <div class="flex justify-between items-start">
+                    <span class="bg-amber-500/20 text-amber-500 text-xs font-bold px-2 py-1 rounded">בקרוב</span>
+                    <span class="text-gray-500 text-xs">פרק 4</span>
+                </div>
+                <h4 class="font-bold text-lg text-gray-400 tracking-wide">טרם פורסם</h4>
+                <p class="text-gray-600 text-sm italic">הפרק יעלה בקרוב!</p>
             </button>
         </div>
 
@@ -153,6 +164,20 @@
             if (window.innerWidth < 768) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+        }
+
+        function showNotReleased(id) {
+            resetSelection();
+            document.getElementById('btn-' + id).classList.add('active-episode');
+            
+            const player = document.getElementById('main-player');
+            const placeholder = document.getElementById('player-placeholder');
+            const notReleased = document.getElementById('not-released');
+            
+            player.classList.add('hidden');
+            placeholder.classList.add('hidden');
+            notReleased.classList.remove('hidden');
+            player.src = "";
         }
 
         function resetSelection() {
